@@ -30,19 +30,20 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  Color mainColor = Color(0xFF25c4a);
-  Color secondColor = Color(0xFF117eeb);
+  Color mainColor = const Color(0x0ff25c4a);
+  Color secondColor = const Color(0xff117eeb);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: mainColor,
+      backgroundColor: secondColor,
       body: Padding(
-        padding: EdgeInsets.all(18.0),
+        padding: const EdgeInsets.all(18.0),
         child: PageView.builder(
-            itemCount: questions.length,
-            itemBuilder: (context, index) {
-              return Column(
-                mainAxisAlignment: MainAxisAlignment.center,
+          itemCount: questions.length,
+          itemBuilder: (context, index) {
+            return SafeArea(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   const SizedBox(
@@ -55,14 +56,44 @@ class _HomePageState extends State<HomePage> {
                         fontWeight: FontWeight.w300,
                         fontSize: 28.0),
                   ),
-                 const Divider(
+                  const Divider(
                     color: Colors.white,
-                    height: 8.0,
+                    height: 30,
                     thickness: 1.0,
+                  ),
+                  const SizedBox(height: 20),
+                  Text(
+                    questions[index].question,
+                    style: const TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.w300,
+                      fontSize: 22,
+                    ),
+                  ),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: questions[index]
+                        .options
+                        .entries
+                        .map(
+                          (option) => ListTile(
+                            onTap: () {
+                              if (option.value == true) {
+                                print("Right answer");
+                              } else {
+                                print("Wrong answer");
+                              }
+                            },
+                            title: Text(option.key),
+                          ),
+                        )
+                        .toList(),
                   )
                 ],
-              );
-            }),
+              ),
+            );
+          },
+        ),
       ),
     );
   }

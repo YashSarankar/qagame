@@ -1,6 +1,6 @@
-class QuestionModel{
-  String? question;
-  Map<String,bool>?answer;
+class QuestionModel {
+  final String question;
+  final Map<String, bool> options;
 
-  QuestionModel(this.question,this.answer);
+  QuestionModel(this.question, this.options);
 }
