@@ -1,0 +1,7 @@
+step 1: we need to create the folder structure of the app.
+
+step 2: then we need to create the model for our Quizz Question.
+
+step 3:and we need a simple list of question to display it in our screen.
+
+  Let's Start...
